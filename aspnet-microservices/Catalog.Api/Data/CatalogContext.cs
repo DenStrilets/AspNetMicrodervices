@@ -12,9 +12,14 @@ namespace Catalog.Api.Data
             var database = client.GetDatabase(configuration.GetValue<string>("DatabaseSettings:DatabaseName"));
 
             Products = database.GetCollection<Product>(configuration.GetValue<string>("DatabaseSettings:CollectionName"));
+
+            TestProducts = database.GetCollection<TestProduct>("TestProducts");
+
             CatalogContextSeed.SeedData(Products);
         }
 
         public IMongoCollection<Product> Products { get; }
+
+        public IMongoCollection<TestProduct> TestProducts { get; }
     }
 }

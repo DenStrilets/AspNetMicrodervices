@@ -19,10 +19,22 @@ namespace Catalog.Api.Repositories
         public async Task<IEnumerable<Product>> GetProducts()
         {
             return await _context
-                            .Products
+                     .Products
+                     .Find(p => true)
+                     .ToListAsync();
+        }
+        public async Task<IEnumerable<TestProduct>> GetTestProducts()
+        {
+            return await _context
+                            .TestProducts
                             .Find(p => true)
                             .ToListAsync();
         }
+        public async Task CreateTestProduct(TestProduct testProduct)
+        {
+            await _context.TestProducts.InsertOneAsync(testProduct);
+        }
+
         public async Task<Product> GetProduct(string id)
         {
             return await _context

@@ -14,5 +14,8 @@ namespace Catalog.Api.Repositories
         Task CreateProduct(Product product);
         Task<bool> UpdateProduct(Product product);
         Task<bool> DeleteProduct(string id);
+
+        Task CreateTestProduct(TestProduct product);
+        Task<IEnumerable<TestProduct>> GetTestProducts();
     }
 }
